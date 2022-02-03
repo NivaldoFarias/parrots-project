@@ -45,10 +45,20 @@ main {
   flex-wrap: wrap;
 }
 .card {
-  margin-bottom: 34px;
-  margin-right: 30px;
+  position: relative;
   height: 146px;
   width: 117px;
+
+  margin-bottom: 34px;
+  margin-right: 30px;
+}
+img {
+  width: 100px;
+}
+.face {
+  width: 100%;
+  height: 100%;
+
 
   display: flex;
   align-items: center;
@@ -57,7 +67,20 @@ main {
   border-radius: 5px;
   border: 1px solid rgb(153, 206, 168);
   background-color: rgb(167, 233, 175);
+
+  
+  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  position: absolute;
+  backface-visibility: hidden;
+  transition: all .5s;
+  transform-style: preserve-3d;
 }
-img {
-  width: 100px;
+.back-face {
+  transform: rotateY(180deg);
+}
+.card:hover .back-face {
+  transform: rotateY(0deg);
+}
+.card:hover .front-face {
+  transform: rotateY(-180deg);
 }
