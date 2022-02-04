@@ -11,20 +11,21 @@ body {
   width: inherit;
   height: inherit;
 
+  font-family: 'Roboto', sans-serif;
+  color: rgb(117, 183, 158);
+
   background-color: rgb(238, 249, 191);
   position: relative;
 } 
 header {
   padding:0 20px;
   width: 100vw;
-  height: 150px;
+  height: 120px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  font-family: 'Roboto', sans-serif;
-  color: rgb(117, 183, 158);
   font-size: 36px;
   font-weight: bold;
   line-height: 42px;
@@ -44,6 +45,23 @@ main {
   justify-content: center;
   flex-wrap: wrap;
 }
+img {
+  width: 100px;
+}
+section {
+  height: 30px;
+  width: 100%;
+  padding-left: 11%;
+  padding-right: 9.2%;
+  margin-bottom: 20px;
+
+  font-size: 24px;
+  font-weight: 300;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .card {
   position: relative;
   height: 146px;
@@ -51,9 +69,6 @@ main {
 
   margin-bottom: 34px;
   margin-right: 30px;
-}
-img {
-  width: 100px;
 }
 .face {
   width: 100%;
