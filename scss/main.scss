@@ -78,9 +78,9 @@ img {
 .back-face {
   transform: rotateY(180deg);
 }
-.card:hover .back-face {
+.card.visible .back-face {
   transform: rotateY(0deg);
 }
-.card:hover .front-face {
+.card.visible .front-face {
   transform: rotateY(-180deg);
 }

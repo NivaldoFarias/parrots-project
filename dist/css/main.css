@@ -102,12 +102,12 @@ img {
           transform: rotateY(180deg);
 }
 
-.card:hover .back-face {
+.card.visible .back-face {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg);
 }
 
-.card:hover .front-face {
+.card.visible .front-face {
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
 }
