@@ -9,7 +9,6 @@ const gameIndex = document.querySelector("section");
 
 gameInit();
 const cards = Array.from(document.getElementsByClassName("card")); //so pode ser declarada apos chamar gameInit() 
-
 rotateCard(); //so pode ser chamada apos declarar const cards
 
 function gameInit(){
@@ -71,6 +70,7 @@ function rotateCard(){
         }
         else if (flippedCard !== card){
           checkCards(card);
+          victory();
         }
       }
     })
@@ -103,8 +103,8 @@ function cardType(card){
 }
 function checkCards(card){
   if (cardType(card) === cardType(flippedCard)){
-    card.classList.add('blocked', 'matched');
-    flippedCard.classList.add('blocked', 'matched');
+    matchedCards.push(card.classList.add('blocked', 'matched'));
+    matchedCards.push(flippedCard.classList.add('blocked', 'matched'));
    
     flippedCard = null;
   }
@@ -131,6 +131,16 @@ function blockAllCards(bool){
         card.classList.remove('blocked');
       }
     })
+  }
+}
+function victory(){
+  if (matchedCards.length === cards.length){
+    setTimeout(() => {
+      alert(`
+        Você ganhou em ${flips} jogadas! 
+        Tempo total: ${time} segundos`)
+    }, 300);
+    
   }
 }
 
