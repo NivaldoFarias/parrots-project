@@ -1,15 +1,14 @@
-let nCards = parseInt(prompt("Quantas cartas?"));
 let interval = null; 
+let flippedCard = null;
+let cards = null;
 let time = 0; 
 let flips = 0;
-let cardsCollection = document.querySelector("main");
-let flippedCard = null;
 let matchedCards = [];
+let nCards = parseInt(prompt("Quantas cartas?"));
+let mainGen = document.querySelector("main");
 const gameIndex = document.querySelector("section");
 
 gameInit();
-const cards = Array.from(document.getElementsByClassName("card")); //so pode ser declarada apos chamar gameInit() 
-rotateCard(); //so pode ser chamada apos declarar const cards
 
 function gameInit(){
   let mainProto = []; 
@@ -49,12 +48,15 @@ function gameInit(){
     `);
   }
   printCards(mainProto);
+  cards = Array.from(document.getElementsByClassName("card"));
+
+  rotateCard();
 }
 function printCards(arr){
   arr = shuffleCards(arr);
 
   for (let i = 0; i < arr.length; i++){
-    cardsCollection.innerHTML += arr[i];
+    mainGen.innerHTML += arr[i];
   }
 }
 function rotateCard(){
@@ -139,11 +141,31 @@ function victory(){
       alert(`
         Você ganhou em ${flips} jogadas! 
         Tempo total: ${time} segundos`)
+      reset();
     }, 300);
-    
   }
 }
+function reset(){
+  const choice = prompt('Deseja jogar novamente? y/n');
+  if (choice === 'y'){
+    interval = null; 
+    flippedCard = null;
+    nCards = null;
+    cards = null;
+    time = 0; 
+    flips = 0;
+    matchedCards = [];
+    mainGen.innerHTML = '';
 
+    gameIndex.children[0].innerText = `Flips: 0`;
+    gameIndex.children[1].innerText = `Time passed: 0`;
+
+    gameInit();
+  }
+  else if (choice === 'n'){
+
+  }
+}
 interval = setInterval(updateTime, 1000);
 
 /* 
