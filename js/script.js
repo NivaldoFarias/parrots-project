@@ -1,13 +1,16 @@
 let nCards = parseInt(prompt("Quantas cartas?"));
-let interval = null, time = 0, flips = 0;
-const gameIndex = document.querySelector("section");
+let interval = null; 
+let time = 0; 
+let flips = 0;
 let cardsCollection = document.querySelector("main");
+let flippedCard = null;
+let matchedCards = [];
+const gameIndex = document.querySelector("section");
 
 gameInit();
-const cards = Array.from(document.getElementsByClassName("card"));
+const cards = Array.from(document.getElementsByClassName("card")); //so pode ser declarada apos chamar gameInit() 
 
-shuffleCards(cards);
-rotateCards(); //so pode ser chamada apos const cards ser declarada, que por si, so pode ser chamada apos gameInit()
+rotateCard(); //so pode ser chamada apos declarar const cards
 
 function gameInit(){
   let mainProto = []; 
@@ -26,7 +29,7 @@ function gameInit(){
       'dist/img/unicornparrot.gif'
     ]
     mainProto.push (`
-      <div class="card hidden">
+      <div class="card">
         <div class="front-face face">
           <img src="dist/img/front.png" alt="papagaio">
         </div>
@@ -36,7 +39,7 @@ function gameInit(){
       </div>
     `);
     mainProto.push (`
-      <div class="card hidden">
+      <div class="card">
         <div class="front-face face">
           <img src="dist/img/front.png" alt="papagaio">
         </div>
@@ -55,11 +58,21 @@ function printCards(arr){
     cardsCollection.innerHTML += arr[i];
   }
 }
-function rotateCards(){
+function rotateCard(){
   cards.forEach((card) => {
     card.addEventListener('click', () => {
-      card.classList.toggle('visible');
-      updateFlips();
+      if (!(card.classList.contains('blocked'))){
+        updateFlips();
+        card.classList.toggle('visible');
+
+        if (flippedCard === null) {
+          flippedCard = card;
+          flippedCard.classList.add('blocked');
+        }
+        else if (flippedCard !== card){
+          checkCards(card);
+        }
+      }
     })
   })
 }
@@ -67,7 +80,7 @@ function updateFlips(){
   gameIndex.children[0].innerText = `Flips: ${++flips}`;
 }
 function updateTime(){
-  gameIndex.children[1].innerText = `Time passed: ${++time}`;
+  gameIndex.children[1].innerText = `Time passed: ${++time}s`;
 }
 function shuffleCards(arrOfCards){ 
   let index = arrOfCards.length,  randIndex;
@@ -87,6 +100,38 @@ function shuffleCards(arrOfCards){
 }
 function cardType(card){
   return card.children[1].children[0].src; // retorna src do tipo da carta
+}
+function checkCards(card){
+  if (cardType(card) === cardType(flippedCard)){
+    card.classList.add('blocked', 'matched');
+    flippedCard.classList.add('blocked', 'matched');
+   
+    flippedCard = null;
+  }
+  else {
+    blockAllCards(true);
+
+    setTimeout(() => {
+      card.classList.remove('visible');
+      flippedCard.classList.remove('visible');
+      flippedCard = null;
+      blockAllCards(false);
+    }, 1000);
+  }
+}
+function blockAllCards(bool){ 
+  if (bool){
+    cards.forEach((card) => {
+      card.classList.add('blocked');
+    })
+  }
+  else {
+    cards.forEach((card) => {
+      if (!(card.classList.contains('matched'))){
+        card.classList.remove('blocked');
+      }
+    })
+  }
 }
 
 interval = setInterval(updateTime, 1000);
