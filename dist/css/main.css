@@ -82,6 +82,10 @@ section {
           align-items: center;
 }
 
+.hidden {
+  display: none;
+}
+
 .card {
   position: relative;
   height: 146px;
