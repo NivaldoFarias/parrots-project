@@ -28,21 +28,21 @@ function gameInit(){
   }
   for (let i = 0; i < 7; i++){  
     mainProto.push (`
-      <div class="card">
-        <div class="front-face face">
+      <div class="card" data-identifier="card">
+        <div class="front-face face" data-identifier="front-face">
           <img src="dist/img/front.png" alt="papagaio">
         </div>
-        <div class="back-face face">
+        <div class="back-face face" data-identifier="back-face">
           <img src="${cardTypes[i]}" alt="papagaio dancando">
         </div>
       </div>
     `);
     mainProto.push (`
-      <div class="card">
-        <div class="front-face face">
+      <div class="card" data-identifier="card">
+        <div class="front-face face" data-identifier="front-face">
           <img src="dist/img/front.png" alt="papagaio">
         </div>
-        <div class="back-face face">
+        <div class="back-face face" data-identifier="back-face">
           <img src="${cardTypes[i]}" alt="papagaio dancando">
         </div>
       </div>
