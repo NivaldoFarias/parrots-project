@@ -1,24 +1,21 @@
-@import './resets';
-@import './variables';
-@import './mixins';
-@import './functions';
+@import "./resets";
 
 html {
   width: 100vw;
-  height: auto;
+  height: 100%;
 }
 body {
   width: inherit;
   height: inherit;
 
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: rgb(117, 183, 158);
 
   background-color: rgb(238, 249, 191);
   position: relative;
-} 
+}
 header {
-  padding:0 20px;
+  padding: 0 20px;
   width: 100vw;
   height: 120px;
 
@@ -31,7 +28,7 @@ header {
   line-height: 42px;
   text-align: center;
 
-  @media only screen and (min-width: 614px){
+  @media only screen and (min-width: 614px) {
     font-size: 56px;
   }
 }
@@ -39,23 +36,23 @@ main {
   padding-left: 10%;
   padding-right: 5%;
   width: 100%;
-  height: 100%;
+  height: auto;
 
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 
-  @media only screen and (max-width: 614px){
+  @media only screen and (max-width: 614px) {
     justify-content: space-evenly;
   }
-  @media only screen and (min-width: 980px){
+  @media only screen and (min-width: 980px) {
     padding: 0 20%;
   }
 }
 img {
   width: 80%;
 
-  @media only screen and (min-width: 430px){
+  @media only screen and (min-width: 430px) {
     width: 65%;
   }
 }
@@ -73,9 +70,12 @@ section {
   justify-content: space-between;
   align-items: center;
 
-  @media only screen and (min-width: 980px){
+  @media only screen and (min-width: 980px) {
     font-size: 30px;
   }
+}
+.hidden {
+  display: none !important; 
 }
 .card {
   position: relative;
@@ -86,7 +86,7 @@ section {
   margin-bottom: 3vh;
   margin-right: 7vw;
 
-  @media only screen and (min-width: 614px){
+  @media only screen and (min-width: 430px) {
     height: 146px;
     width: 117px;
 
@@ -98,7 +98,6 @@ section {
   width: 100%;
   height: 100%;
 
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,11 +106,10 @@ section {
   border: 1px solid rgb(153, 206, 168);
   background-color: rgb(167, 233, 175);
 
-  
-  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   position: absolute;
   backface-visibility: hidden;
-  transition: all .5s;
+  transition: all 0.5s;
   transform-style: preserve-3d;
 }
 .back-face {
@@ -123,3 +121,87 @@ section {
 .card.visible .front-face {
   transform: rotateY(-180deg);
 }
+.btn {
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.btn.clicked .btn-slide-show-text1 {
+  margin-left: 65px;
+}
+.btn-striped-shadow {
+  overflow: visible;
+  border: 0px;
+  padding: 0px;
+  display: inline-block;
+  letter-spacing: 1px;
+  position: relative;
+  transition: opacity 0.3s ease 0s, z-index 0.3s step-end 0s,
+    transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+  z-index: 1;
+  background-color: rgb(250, 250, 250);
+  cursor: pointer;
+  width: 180px;
+  height: 48px;
+  line-height: 38px;
+
+  
+}
+.btn-striped-shadow span {
+  display: block;
+  position: relative;
+  z-index: 2;
+  border: 5px solid;
+  background: rgb(118, 183, 158);
+}
+.btn-striped-shadow::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 1;
+  transition: transform 0.3s ease 0s, max-height 0.3s ease 0s,
+    width 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+  width: 8px;
+  max-height: calc(100% - 5px);
+  height: 100%;
+  left: -12px;
+  bottom: -5px;
+  background-size: 8px 15px;
+  background-repeat: repeat-y;
+  background-position: 0px 100%;
+}
+.btn-striped-shadow::after {
+  width: calc(100% - 4px);
+  height: 8px;
+  left: -10px;
+  bottom: -9px;
+  background-size: 15px 8px;
+  background-repeat: repeat-x;
+}
+.btn-striped-shadow.clicked {
+  transform: translate(-12px, 12px);
+  z-index: 3;
+}
+.btn-striped-shadow.clicked::before {
+  max-height: calc(100% - 10px);
+  transform: translate(12px, -12px);
+}
+.btn-striped-shadow--green::before {
+  background-image: linear-gradient(
+    135deg,
+    transparent,
+    transparent 5px,
+    rgb(117, 183, 158) 0px,
+    rgb(117, 183, 158) 10px,
+    transparent 0px
+  );
+}
+.btn-striped-shadow--green span {
+  border-color: rgb(117, 183, 158);
+  color: rgb(238, 249, 191);
+}
+.btn:first-child:nth-last-child(1) {
+/* -or- li:only-child { */
+    margin-top: 120px;
+}
+

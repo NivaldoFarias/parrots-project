@@ -4,8 +4,9 @@ let cards = null;
 let time = 0; 
 let flips = 0;
 let matchedCards = [];
-let nCards = parseInt(prompt("Quantas cartas?"));
+let nCards = 0;
 let mainGen = document.querySelector("main");
+const btn = document.querySelector("button");
 const gameIndex = document.querySelector("section");
 const cardTypes = [
   'dist/img/bobrossparrot.gif',
@@ -17,11 +18,21 @@ const cardTypes = [
   'dist/img/unicornparrot.gif'
 ]
 
-gameInit();
+btn.addEventListener("click", () => {
+  btn.classList.add("clicked");
+
+  setTimeout(() => {
+    btn.classList.add("hidden");
+    gameInit();
+  }, 300); 
+});
 
 function gameInit(){
+
   let mainProto = []; 
   interval = setInterval(updateTime, 1000);
+
+  btn.classList.add("hidden");
 
   while (nCards < 4 || (nCards % 2) != 0 || nCards > 14){
     nCards = parseInt(prompt("Quantas cartas? 4-14 e par"));
@@ -186,7 +197,6 @@ function cardPicker(arr){
   }
   return newArray;
 }
-
 /* 
   A versão da função shuffleCards() foi consultada em: 
     https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array 

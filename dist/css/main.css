@@ -7,13 +7,13 @@
 
 html {
   width: 100vw;
-  height: auto;
+  height: 100%;
 }
 
 body {
   width: inherit;
   height: inherit;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #75b79e;
   background-color: #eef9bf;
   position: relative;
@@ -48,7 +48,7 @@ main {
   padding-left: 10%;
   padding-right: 5%;
   width: 100%;
-  height: 100%;
+  height: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -108,6 +108,10 @@ section {
   }
 }
 
+.hidden {
+  display: none !important;
+}
+
 .card {
   position: relative;
   height: 20vh;
@@ -116,7 +120,7 @@ section {
   margin-right: 7vw;
 }
 
-@media only screen and (min-width: 614px) {
+@media only screen and (min-width: 430px) {
   .card {
     height: 146px;
     width: 117px;
@@ -145,8 +149,8 @@ section {
   position: absolute;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  -webkit-transition: all .5s;
-  transition: all .5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
@@ -164,4 +168,89 @@ section {
 .card.visible .front-face {
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
+}
+
+.btn {
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.btn.clicked .btn-slide-show-text1 {
+  margin-left: 65px;
+}
+
+.btn-striped-shadow {
+  overflow: visible;
+  border: 0px;
+  padding: 0px;
+  display: inline-block;
+  letter-spacing: 1px;
+  position: relative;
+  transition: opacity 0.3s ease 0s, z-index 0.3s step-end 0s, transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+  z-index: 1;
+  background-color: #fafafa;
+  cursor: pointer;
+  width: 180px;
+  height: 48px;
+  line-height: 38px;
+}
+
+.btn-striped-shadow span {
+  display: block;
+  position: relative;
+  z-index: 2;
+  border: 5px solid;
+  background: #76b79e;
+}
+
+.btn-striped-shadow::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 1;
+  transition: transform 0.3s ease 0s, max-height 0.3s ease 0s, width 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+  width: 8px;
+  max-height: calc(100% - 5px);
+  height: 100%;
+  left: -12px;
+  bottom: -5px;
+  background-size: 8px 15px;
+  background-repeat: repeat-y;
+  background-position: 0px 100%;
+}
+
+.btn-striped-shadow::after {
+  width: calc(100% - 4px);
+  height: 8px;
+  left: -10px;
+  bottom: -9px;
+  background-size: 15px 8px;
+  background-repeat: repeat-x;
+}
+
+.btn-striped-shadow.clicked {
+  -webkit-transform: translate(-12px, 12px);
+          transform: translate(-12px, 12px);
+  z-index: 3;
+}
+
+.btn-striped-shadow.clicked::before {
+  max-height: calc(100% - 10px);
+  -webkit-transform: translate(12px, -12px);
+          transform: translate(12px, -12px);
+}
+
+.btn-striped-shadow--green::before {
+  background-image: linear-gradient(135deg, transparent, transparent 5px, #75b79e 0px, #75b79e 10px, transparent 0px);
+}
+
+.btn-striped-shadow--green span {
+  border-color: #75b79e;
+  color: #eef9bf;
+}
+
+.btn:first-child:nth-last-child(1) {
+  /* -or- li:only-child { */
+  margin-top: 120px;
 }
