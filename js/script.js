@@ -7,32 +7,33 @@ let matchedCards = [];
 let nCards = parseInt(prompt("Quantas cartas?"));
 let mainGen = document.querySelector("main");
 const gameIndex = document.querySelector("section");
+const cardTypes = [
+  'dist/img/bobrossparrot.gif',
+  'dist/img/explodyparrot.gif',
+  'dist/img/fiestaparrot.gif',
+  'dist/img/metalparrot.gif',
+  'dist/img/revertitparrot.gif',
+  'dist/img/tripletsparrot.gif',
+  'dist/img/unicornparrot.gif'
+]
 
 gameInit();
 
 function gameInit(){
   let mainProto = []; 
+  interval = setInterval(updateTime, 1000);
 
   while (nCards < 4 || (nCards % 2) != 0 || nCards > 14){
-    nCards = parseInt(prompt("Quantas cartas? 4-14 e n pode ser impar"));
+    nCards = parseInt(prompt("Quantas cartas? 4-14 e par"));
   }
-  for (let i = nCards/2, j = 0; i > 0; i--, j++){
-    const cardTypes = [
-      'dist/img/bobrossparrot.gif',
-      'dist/img/explodyparrot.gif',
-      'dist/img/fiestaparrot.gif',
-      'dist/img/metalparrot.gif',
-      'dist/img/revertitparrot.gif',
-      'dist/img/tripletsparrot.gif',
-      'dist/img/unicornparrot.gif'
-    ]
+  for (let i = 0; i < 7; i++){  
     mainProto.push (`
       <div class="card">
         <div class="front-face face">
           <img src="dist/img/front.png" alt="papagaio">
         </div>
         <div class="back-face face">
-          <img src="${cardTypes[j]}" alt="papagaio dancando">
+          <img src="${cardTypes[i]}" alt="papagaio dancando">
         </div>
       </div>
     `);
@@ -42,7 +43,7 @@ function gameInit(){
           <img src="dist/img/front.png" alt="papagaio">
         </div>
         <div class="back-face face">
-          <img src="${cardTypes[j]}" alt="papagaio dancando">
+          <img src="${cardTypes[i]}" alt="papagaio dancando">
         </div>
       </div>
     `);
@@ -52,7 +53,8 @@ function gameInit(){
 
   rotateCard();
 }
-function printCards(arr){
+function printCards(arr){ 
+  arr = cardPicker(arr);
   arr = shuffleCards(arr);
 
   for (let i = 0; i < arr.length; i++){
@@ -137,6 +139,8 @@ function blockAllCards(bool){
 }
 function victory(){
   if (matchedCards.length === cards.length){
+    clearInterval(interval);
+
     setTimeout(() => {
       alert(`
         Você ganhou em ${flips} jogadas! 
@@ -156,6 +160,7 @@ function reset(){
     flips = 0;
     matchedCards = [];
     mainGen.innerHTML = '';
+    interval = setInterval(updateTime, 1000);
 
     gameIndex.children[0].innerText = `Flips: 0`;
     gameIndex.children[1].innerText = `Time passed: 0`;
@@ -166,7 +171,45 @@ function reset(){
 
   }
 }
-interval = setInterval(updateTime, 1000);
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+function cardPicker(arr){
+  let newArray = [];
+  let indexOfCards = 0;
+
+  for (let i = 0; i < nCards; ){
+    console.log(` ANTES 
+      i: ${i},
+      arr.length: ${arr.length},
+      newArray.length: ${newArray.length},
+      indexOfCards: ${indexOfCards},
+      indexOfCards: ${indexOfCards + 1},
+      arr[indexOfCards]: ${arr[indexOfCards]},
+      arr[indexOfCards + 1]: ${arr[indexOfCards + 1]},
+    `);
+    
+    indexOfCards = (getRndInteger(0, (arr.length - 2) / 2) * 2);
+    newArray[i++] = arr[indexOfCards]; 
+    newArray[i++] = arr[indexOfCards + 1]; 
+    arr.splice(indexOfCards, 2);
+
+    console.log(` DEPOIS
+      i: ${i},
+      arr.length: ${arr.length},
+      newArray.length: ${newArray.length},
+      indexOfCards: ${indexOfCards},
+      indexOfCards: ${indexOfCards + 1},
+      arr[indexOfCards]: ${arr[indexOfCards]},
+      arr[indexOfCards + 1]: ${arr[indexOfCards + 1]},
+    `);
+  }
+  console.log(`
+    papagaio 1: ${newArray[0]}
+    papagaio 2: ${newArray[2]}
+  `);
+  return newArray;
+}
 
 /* 
   A versão da função shuffleCards() foi consultada em: 
