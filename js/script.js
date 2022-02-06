@@ -84,7 +84,7 @@ function updateFlips(){
   gameIndex.children[0].innerText = `Flips: ${++flips}`;
 }
 function updateTime(){
-  gameIndex.children[1].innerText = `Time passed: ${++time}s`;
+  gameIndex.children[1].innerText = `Time: ${++time}s`;
 }
 function shuffleCards(arrOfCards){ 
   let index = arrOfCards.length,  randIndex;
@@ -144,7 +144,7 @@ function victory(){
     setTimeout(() => {
       alert(`
         Você ganhou em ${flips} jogadas! 
-        Tempo total: ${time} segundos`)
+        Tempo de jogo: ${time} segundos`)
       reset();
     }, 300);
   }
@@ -163,7 +163,7 @@ function reset(){
     interval = setInterval(updateTime, 1000);
 
     gameIndex.children[0].innerText = `Flips: 0`;
-    gameIndex.children[1].innerText = `Time passed: 0`;
+    gameIndex.children[1].innerText = `Time: 0`;
 
     gameInit();
   }
@@ -179,35 +179,11 @@ function cardPicker(arr){
   let indexOfCards = 0;
 
   for (let i = 0; i < nCards; ){
-    console.log(` ANTES 
-      i: ${i},
-      arr.length: ${arr.length},
-      newArray.length: ${newArray.length},
-      indexOfCards: ${indexOfCards},
-      indexOfCards: ${indexOfCards + 1},
-      arr[indexOfCards]: ${arr[indexOfCards]},
-      arr[indexOfCards + 1]: ${arr[indexOfCards + 1]},
-    `);
-    
     indexOfCards = (getRndInteger(0, (arr.length - 2) / 2) * 2);
     newArray[i++] = arr[indexOfCards]; 
     newArray[i++] = arr[indexOfCards + 1]; 
     arr.splice(indexOfCards, 2);
-
-    console.log(` DEPOIS
-      i: ${i},
-      arr.length: ${arr.length},
-      newArray.length: ${newArray.length},
-      indexOfCards: ${indexOfCards},
-      indexOfCards: ${indexOfCards + 1},
-      arr[indexOfCards]: ${arr[indexOfCards]},
-      arr[indexOfCards + 1]: ${arr[indexOfCards + 1]},
-    `);
   }
-  console.log(`
-    papagaio 1: ${newArray[0]}
-    papagaio 2: ${newArray[2]}
-  `);
   return newArray;
 }
 
