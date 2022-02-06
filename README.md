@@ -40,26 +40,26 @@
 <!-- ABOUT THE PROJECT -->
 ## Requirements
 <!--ts-->
-   * [General](#general)
+   - [General](#general)
       - [x] Vanilla JS only
       - [x] Github public Repository
       - [x] Commit every requirement
-   * [Layout](#layout)
+   - [Layout](#layout)
       - [x] Mobile and Desktop mobile
-   * [Card Distribution](#card-istribution)
+   - [Card Distribution](#card-istribution)
       - [x] Prompt user for number of cards
       - [x] Keep Prompt until input is a even number between 4 and 14
       - [x] Print cards randomly
-   * [Card Interaction](#card-interaction)
+   - [Card Interaction](#card-interaction)
       - [x] Turn card on click
       - [x] If turned card is the first of a pair, keep card front-face up until next card is turned
       - [x] When second card is turned, thera are two options:
         - [x] If it is the first card's pair, both cards must stay turned until tha game has ended
         - [x] If it is not the pair, game must wait 1 second, then turn both cards down
       - [x] Use 3D animation for all cards flip
-   * [End of the game](#end-of-the-game)
+   - [End of the game](#end-of-the-game)
       - [x] When all cards are matched, use alert() and show number of total flips 
-   * [Bonus](#bonus)
+   - [Bonus](#bonus)
      - [x] On-screen timer, stops at the end of the game
      - [x] After the game has ended, prompt user for reset
 <!--te-->
