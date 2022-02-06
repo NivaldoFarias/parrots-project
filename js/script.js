@@ -9,14 +9,33 @@ let mainGen = document.querySelector("main");
 const btn = document.querySelector("button");
 const gameIndex = document.querySelector("section");
 const cardTypes = [
-  'dist/img/bobrossparrot.gif',
-  'dist/img/explodyparrot.gif',
-  'dist/img/fiestaparrot.gif',
-  'dist/img/metalparrot.gif',
-  'dist/img/revertitparrot.gif',
-  'dist/img/tripletsparrot.gif',
-  'dist/img/unicornparrot.gif'
-]
+  "dist/img/fiestaparrot.gif",
+  "dist/img/metalparrot.gif",
+  "dist/img/revertitparrot.gif",
+  "dist/img/ceilingparrot.gif",
+  "dist/img/unicornparrot.gif",
+  "dist/img/dadparrot.gif",
+  "dist/img/brazilianfanparrot.gif",
+  "dist/img/evilparrot.gif",
+  "dist/img/githubparrot.gif",
+  "dist/img/originalparrot.gif",
+  "dist/img/parrotnotfound.gif",
+  "dist/img/quadparrot.gif",
+  "dist/img/transparront.gif",
+  "dist/img/gothparrot.gif",
+  "dist/img/gentlemanparrot.gif",
+  "dist/img/mustacheparrot.gif",
+  "dist/img/60fpsparrot.gif",
+  "dist/img/biparrot.gif",
+  "dist/img/partyblob.gif",
+  "dist/img/vibepartycat.gif",
+  "dist/img/witnessprotectionparrot.gif",
+  "dist/img/partyblob.gif",
+  "dist/img/asyncparrot.gif",
+  "dist/img/cursedparrot.gif",
+  "dist/img/partymoogle.gif",
+  "dist/img/stubparrot.gif",
+];
 
 btn.addEventListener("click", () => {
   btn.classList.add("clicked");
@@ -37,7 +56,7 @@ function gameInit(){
   while (nCards < 4 || (nCards % 2) != 0 || nCards > 14){
     nCards = parseInt(prompt("Quantas cartas? 4-14 e par"));
   }
-  for (let i = 0; i < 7; i++){  
+  for (let i = 0; i < cardTypes.length; i++){  
     mainProto.push (`
       <div class="card" data-identifier="card">
         <div class="front-face face" data-identifier="front-face">
