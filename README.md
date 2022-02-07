@@ -65,6 +65,7 @@
    - Bonus
      - [x] On-screen timer, stops at the end of the game
      - [x] After the game has ended, prompt user for reset
+     - [x] Not only the printed cards are randomized, but which pairs will be printed also should be randomized (not required, extra)
 <!--te-->
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
