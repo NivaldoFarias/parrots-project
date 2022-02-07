@@ -1,9 +1,11 @@
 let flippedCard = null;
 let cards = null;
-let time = -1; 
+let time = 0; 
+let timer_on = 0;
 let flips = 0;
 let matchedCards = [];
 let nCards = 0;
+let nGames = 0;
 let mainGen = document.querySelector("main");
 const btn = document.querySelector("button");
 const gameIndex = document.querySelector("section");
@@ -36,23 +38,18 @@ const cardTypes = [
   "dist/img/stubparrot.gif",
 ];
 
-btn.addEventListener("click", () => {
-  btn.classList.add("clicked");
-  setInterval(updateTime, 1000);
-
-  setTimeout(() => {
-    btn.classList.add("hidden");
-    gameInit();
-  }, 300); 
-});
+startButton();
 
 function gameInit(){
   let mainProto = []; 
-  btn.classList.add("hidden");
 
   while (nCards < 4 || (nCards % 2) != 0 || nCards > 14){
-    nCards = parseInt(prompt("Quantas cartas? 4-14 e par"));
+    nCards = parseInt(prompt("Digite o número de cartas a jogar, sendo ele par entre 4 e 14"));
   }
+  gameIndex.children[0].innerText = `Flips: 0`;
+  gameIndex.children[1].innerText = `Time: 0`;
+  mainGen.innerHTML = "";
+
   for (let i = 0; i < cardTypes.length; i++){  
     mainProto.push (`
       <div class="card" data-identifier="card">
@@ -79,6 +76,7 @@ function gameInit(){
   cards = Array.from(document.getElementsByClassName("card"));
 
   rotateCard();
+  startCount();
 }
 function printCards(arr){ 
   arr = cardPicker(arr);
@@ -111,7 +109,8 @@ function updateFlips(){
   gameIndex.children[0].innerText = `Flips: ${++flips}`;
 }
 function updateTime(){
-  gameIndex.children[1].innerText = `Time: ${++time}s`;
+  gameIndex.children[1].innerText = `Time: ${time++}s`;
+  timeout = setTimeout(updateTime, 1000);
 }
 function shuffleCards(arrOfCards){ 
   let index = arrOfCards.length,  randIndex;
@@ -165,8 +164,9 @@ function blockAllCards(bool){
   }
 }
 function victory(){
-  if (matchedCards.length === cards.length){
+  stopCount();
 
+  if (matchedCards.length === cards.length && !nGames){
     setTimeout(() => {
       alert(`
         Você ganhou em ${flips} jogadas! 
@@ -174,25 +174,35 @@ function victory(){
       reset();
     }, 300);
   }
+  else if (matchedCards.length === cards.length) {
+    setTimeout(() => {
+      alert(`
+        Você ganhou em ${flips} jogadas! 
+        Tempo de jogo: ${time} segundos
+        Sequência de vitórias: ${nGames}`);
+      reset();
+    }, 300);
+  }
 }
 function reset(){
-  const choice = prompt('Deseja jogar novamente? y/n');
-  if (choice === 'y'){
-    interval = null; 
-    flippedCard = null;
-    nCards = null;
-    cards = null;
-    time = -1; 
-    flips = 0;
-    matchedCards = [];
-    mainGen.innerHTML = '';
+  nGames++;
+  flippedCard = null;
+  nCards = null;
+  cards = null;
+  time = 0; 
+  flips = 0;
+  matchedCards = [];
 
+  if (parseInt(prompt(`Digite 1 para jogar novamente`))){
+    gameInit();
+  }
+  else {
     gameIndex.children[0].innerText = `Flips: 0`;
     gameIndex.children[1].innerText = `Time: 0`;
 
-    gameInit();
-  }
-  else if (choice === 'n'){
+    btn.classList.remove("clicked");
+    btn.classList.remove("hidden");
+    btn.children[0].innerText = `JOGAR NOVAMENTE`;
   }
 }
 function getRndInteger(min, max) {
@@ -209,6 +219,26 @@ function cardPicker(arr){
     arr.splice(indexOfCards, 2);
   }
   return newArray;
+}
+function startButton(){
+  btn.addEventListener("click", () => {
+    btn.classList.add("clicked");
+
+    setTimeout(() => {
+      btn.classList.add("hidden");
+      gameInit();
+    }, 300);
+  });
+}
+function startCount() {
+  if (!timer_on) {
+    timer_on = 1;
+    updateTime();
+  }
+}
+function stopCount() {
+  clearTimeout(timeout);
+  timer_on = 0;
 }
 
 /* 

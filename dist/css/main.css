@@ -108,6 +108,19 @@ section {
   }
 }
 
+.btn-container {
+  width: 100%;
+  height: 30vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
 .hidden {
   display: none !important;
 }
@@ -174,6 +187,7 @@ section {
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
+  margin-top: 80px;
 }
 
 .btn.clicked .btn-slide-show-text1 {
@@ -248,9 +262,4 @@ section {
 .btn-striped-shadow--green span {
   border-color: #75b79e;
   color: #eef9bf;
-}
-
-.btn:first-child:nth-last-child(1) {
-  /* -or- li:only-child { */
-  margin-top: 120px;
 }
