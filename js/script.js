@@ -1,7 +1,6 @@
-let interval = null; 
 let flippedCard = null;
 let cards = null;
-let time = 0; 
+let time = -1; 
 let flips = 0;
 let matchedCards = [];
 let nCards = 0;
@@ -39,6 +38,7 @@ const cardTypes = [
 
 btn.addEventListener("click", () => {
   btn.classList.add("clicked");
+  setInterval(updateTime, 1000);
 
   setTimeout(() => {
     btn.classList.add("hidden");
@@ -47,10 +47,7 @@ btn.addEventListener("click", () => {
 });
 
 function gameInit(){
-
   let mainProto = []; 
-  interval = setInterval(updateTime, 1000);
-
   btn.classList.add("hidden");
 
   while (nCards < 4 || (nCards % 2) != 0 || nCards > 14){
@@ -169,7 +166,6 @@ function blockAllCards(bool){
 }
 function victory(){
   if (matchedCards.length === cards.length){
-    clearInterval(interval);
 
     setTimeout(() => {
       alert(`
@@ -186,11 +182,10 @@ function reset(){
     flippedCard = null;
     nCards = null;
     cards = null;
-    time = 0; 
+    time = -1; 
     flips = 0;
     matchedCards = [];
     mainGen.innerHTML = '';
-    interval = setInterval(updateTime, 1000);
 
     gameIndex.children[0].innerText = `Flips: 0`;
     gameIndex.children[1].innerText = `Time: 0`;
@@ -198,7 +193,6 @@ function reset(){
     gameInit();
   }
   else if (choice === 'n'){
-
   }
 }
 function getRndInteger(min, max) {
@@ -216,6 +210,7 @@ function cardPicker(arr){
   }
   return newArray;
 }
+
 /* 
   A versão da função shuffleCards() foi consultada em: 
     https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array 
