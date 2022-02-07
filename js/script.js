@@ -164,9 +164,8 @@ function blockAllCards(bool){
   }
 }
 function victory(){
-  stopCount();
-
   if (matchedCards.length === cards.length && !nGames){
+    stopCount();
     setTimeout(() => {
       alert(`
         Você ganhou em ${flips} jogadas! 
@@ -175,6 +174,7 @@ function victory(){
     }, 300);
   }
   else if (matchedCards.length === cards.length) {
+    stopCount();
     setTimeout(() => {
       alert(`
         Você ganhou em ${flips} jogadas! 
@@ -193,7 +193,7 @@ function reset(){
   flips = 0;
   matchedCards = [];
 
-  if (parseInt(prompt(`Digite 1 para jogar novamente`))){
+  if (prompt(`Digite 1 para jogar novamente`) === '1'){
     gameInit();
   }
   else {
@@ -237,6 +237,7 @@ function startCount() {
   }
 }
 function stopCount() {
+  console.log("entrou");
   clearTimeout(timeout);
   timer_on = 0;
 }
