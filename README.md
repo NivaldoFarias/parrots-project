@@ -38,6 +38,9 @@
 </div>
 
 <!-- ABOUT THE PROJECT -->
+
+![Banner](https://github.com/NivaldoFarias/projeto4-parrotcardgame/blob/main/dist/img/parrot-card-game-secong-screen.png?raw=true)
+
 ## Requirements
 <!--ts-->
    - General
