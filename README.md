@@ -21,7 +21,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/NivaldoFarias/projeto3-driveneats">
+  <a href="https://github.com/NivaldoFarias/projeto4-parrotcardgame#readme">
     <img src="https://github.com/NivaldoFarias/projeto4-parrotcardgame/blob/main/dist/img/front.png?raw=true" alt="Logo" width="150">
   </a>
 
@@ -30,11 +30,11 @@
   <p align="center">
     Web Development Project using HTML, SCSS and JS
     <br />
-    <a href="https://github.com/NivaldoFarias/projeto2-driveneats/blob/main/dist/index.html"><strong>HTML code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/projeto4-parrotcardgame/blob/main/index.html"><strong>HTML code»</strong></a>
     -
-    <a href="https://github.com/NivaldoFarias/projeto2-driveneats/blob/main/scss/main.scss"><strong>SCSS code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/projeto4-parrotcardgame/blob/main/scss/main.scss"><strong>SCSS code»</strong></a>
     -
-    <a href="https://github.com/NivaldoFarias/projeto3-driveneats/blob/main/JS/script.js"><strong>JS code»</strong></a>
+    <a href="https://github.com/NivaldoFarias/projeto4-parrotcardgame/blob/main/js/script.js"><strong>JS code»</strong></a>
 </div>
 
 <!-- ABOUT THE PROJECT -->
